@@ -50,8 +50,15 @@ fn main() {
                     println!("ERROR: No key supplied");
                 }
             }
+            "EXISTS" => {
+                if let Some(k) = command_vec.get(1) {
+                    println!("{}", map.contains_key(&k.to_string()));
+                } else {
+                    println!("ERROR: No key supplied");
+                }
+            }
             "QUIT" => {
-                println!("Goodbye from Teddy");
+                println!(">>> Goodbye from Teddy");
                 break;
             }
             op => {
