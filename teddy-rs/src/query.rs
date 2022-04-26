@@ -1,3 +1,4 @@
+///! This file defines everything related to a Query
 use std::str::FromStr;
 
 use crate::operation::Operation;
@@ -5,9 +6,10 @@ use crate::value::Value;
 
 pub type QueryResult = Result<Value, String>;
 
+/// The Query struct is supposed to hold query information
 #[derive(Debug)]
 pub struct Query<'a> {
-    pub original_query_string: &'a str,
+    original_query_string: &'a str,
     pub operator: Operation,
     pub operand: &'a str,
     pub values: Option<&'a str>,
@@ -38,5 +40,9 @@ impl<'a> Query<'a> {
             operand: vector.get(1).unwrap(),
             values: vector.get(2).cloned(),
         })
+    }
+
+    pub fn get_original_query(&self) -> String {
+        String::from(self.original_query_string.clone())
     }
 }

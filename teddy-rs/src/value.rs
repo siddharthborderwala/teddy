@@ -1,5 +1,9 @@
+///! This file contains enums and methods related to different
+///! data types supported by Teddy
 use std::collections::{BTreeSet, HashMap, HashSet, VecDeque};
 
+/// The Value enum that allows a single store-map to hold
+/// different kinds of supported data types in Teddy
 #[derive(Debug, Clone, Eq, PartialEq)]
 pub enum Value {
     String(String),
@@ -16,6 +20,7 @@ impl From<&str> for Value {
 }
 
 impl Value {
+    /// Create a teddy list from a vector of '&str's
     pub fn create_list(values: Vec<&str>) -> Self {
         Self::List(
             values
@@ -25,6 +30,7 @@ impl Value {
         )
     }
 
+    /// Create a teddy set from a vector of '&str's
     pub fn create_set(values: Vec<&str>) -> Self {
         Self::Set(
             values
@@ -34,6 +40,7 @@ impl Value {
         )
     }
 
+    /// Create a teddy ordered set from a vector of '&str's
     pub fn create_ordered_set(values: Vec<&str>) -> Self {
         Self::OrderedSet(
             values
@@ -43,6 +50,7 @@ impl Value {
         )
     }
 
+    /// Create a teddy hash from a vector of '&str's
     pub fn create_hash(values: Vec<&str>) -> Self {
         let mut map = HashMap::with_capacity(values.len() / 2);
         let mut cur_key = String::new();
